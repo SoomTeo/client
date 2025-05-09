@@ -1,9 +1,19 @@
-import { UsersRound } from "lucide-react";
+import { Plus, UsersRound } from "lucide-react";
+import useSWR from "swr";
 
+import { usePromise } from "../../hook/usePromise";
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Button } from "../base/Button";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "../base/Drawer";
+import { ErrorMessage } from "../base/ErrorMessage";
 import { Header } from "../base/Header";
-import { useAuthNavigator } from "./Auth";
+import { useAuth, useAuthNavigator } from "./Auth";
 
 export const Share = () => {
   useAuthNavigator({ goToAuth: true });
@@ -13,17 +23,64 @@ export const Share = () => {
       <div className="mt-5"></div>
       <div className="flex flex-col items-center rounded-xl bg-zinc-900 py-7">
         <UsersRound className="text-zinc-500" size={40} />
-        <span className="mt-2 text-base font-medium">활동 공유</span>
+        <span className="mt-2 text-lg font-medium">활동 공유</span>
         <p className="pt-1 text-center text-zinc-500">
           다른 사람들과 활동을 공유하고,
           <br />
           서로의 성과를 응원해보세요.
         </p>
-        <Button className="mt-3" variant="secondary">
-          친구 찾기
-        </Button>
+        <FindFriendDrawer />
       </div>
       <BottomNavigation />
     </main>
+  );
+};
+
+const FindFriendDrawer = () => {
+  const client = useAuth((auth) => auth.client);
+  const { data, mutate } =
+    useSWR<{ id: number; nickname: string }[]>(`friend/random`);
+  const { error, pending, run } = usePromise(async (id: number) => {
+    await client.post(`friend/request`, { json: { toUserId: id } });
+    await mutate();
+  });
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button className="mt-3" variant="secondary">
+          친구 찾기
+        </Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>친구 찾기</DrawerTitle>
+        </DrawerHeader>
+        <ErrorMessage error={error} />
+        <div className="p-5 pb-16">
+          <div className="h-[50vh] overflow-y-scroll rounded-xl bg-zinc-900 p-5">
+            {data?.map((user) => (
+              <div
+                className="flex items-center justify-between py-2"
+                key={user.id}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+                  <span>{user.nickname}</span>
+                </div>
+                <Button
+                  disabled={pending}
+                  onClick={() => run(user.id)}
+                  size="icon"
+                  variant="secondary"
+                >
+                  <Plus />
+                </Button>
+              </div>
+            ))}
+            {data?.length == 0 && "이미 친구가 많네요. 당신은 인싸!"}
+          </div>
+        </div>
+      </DrawerContent>
+    </Drawer>
   );
 };
