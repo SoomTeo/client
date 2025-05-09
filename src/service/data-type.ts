@@ -26,3 +26,26 @@ export const MISSION_POINTS = {
   [MissionType.RECEIPT]: 40,
   [MissionType.VOICE]: 30,
 } as const;
+
+export interface DailyTrend {
+  date: Date;
+  progress: number;
+}
+
+export interface Stat {
+  dailyLast3Avg: number;
+  dailyTrends: DailyTrend[];
+  today: Today;
+  weeklyLast3Avg: number;
+  weeklyTrends: WeeklyTrend[];
+}
+
+export interface Today {
+  progress: number;
+  targetPoints: number;
+}
+
+export interface WeeklyTrend {
+  progress: number;
+  week: string;
+}
