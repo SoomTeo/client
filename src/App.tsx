@@ -1,4 +1,3 @@
-import { unstable_ViewTransition as ViewTransition } from "react";
 import { BrowserRouter } from "router2";
 
 import { Home } from "./ui/screen/Home";
@@ -13,11 +12,7 @@ export const App = () => {
           "/404": () => <div>404</div>,
         }}
       >
-        {(Page) => (
-          <ViewTransition>
-            <Page />
-          </ViewTransition>
-        )}
+        {(Page) => <Page />}
       </BrowserRouter>
     </Splash>
   );
