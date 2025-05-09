@@ -1,5 +1,5 @@
 import { BottomNavigation } from "../base/BottomNavigation";
-import { Header } from "../base/header";
+import { Header } from "../base/Header";
 
 type MissionData = {
   id: number;

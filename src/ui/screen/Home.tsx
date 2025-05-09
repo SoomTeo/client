@@ -10,7 +10,7 @@ import {
 
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Card } from "../base/Card";
-import { Header } from "../base/header";
+import { Header } from "../base/Header";
 
 const chartData = [{ visitors: 62 }];
 
