@@ -34,20 +34,22 @@ export const Share = () => {
         </p>
         <FindFriendDrawer />
       </div>
-      <div className="animate-in slide-in-from-bottom-2 fade-in mt-9 rounded-xl bg-zinc-900 px-5 py-2 duration-700">
-        {data?.map((user) => (
-          <button
-            className="flex items-center justify-between py-2 duration-200 active:scale-95 active:opacity-95"
-            key={user.id}
-            onClick={() => push({ pathname: `/user/${user.id}` })}
-          >
-            <div className="flex items-center gap-2">
-              <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
-              <span>{user.nickname}</span>
-            </div>
-          </button>
-        ))}
-      </div>
+      {data?.length && (
+        <div className="animate-in slide-in-from-bottom-2 fade-in mt-9 rounded-xl bg-zinc-900 px-5 py-2 duration-700">
+          {data.map((user) => (
+            <button
+              className="flex items-center justify-between py-2 duration-200 active:scale-95 active:opacity-95"
+              key={user.id}
+              onClick={() => push({ pathname: `/user/${user.id}` })}
+            >
+              <div className="flex items-center gap-2">
+                <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+                <span>{user.nickname}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
       <BottomNavigation />
     </main>
   );
