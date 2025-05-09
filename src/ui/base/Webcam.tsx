@@ -16,7 +16,9 @@ export const Webcam = ({
 
   const startCamera = async () => {
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        video: { facingMode: { ideal: "environment" } },
+      });
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
