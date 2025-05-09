@@ -1,31 +1,55 @@
 import { useRouter } from "router2";
 
+import { useForm } from "../../hook/useForm";
+import { client } from "../../service/api";
 import { Button } from "../base/Button";
+import { ErrorMessage } from "../base/ErrorMessage";
 import { Input } from "../base/Input";
 import { Label } from "../base/Label";
+import { useAuth, useAuthNavigator } from "./Auth";
 
 export const SignIn = () => {
+  useAuthNavigator({ goToApp: true });
   const { push } = useRouter();
+  const setToken = useAuth((auth) => auth.setToken);
+  const { error, onSubmit, pending } = useForm<{
+    email: string;
+    password: string;
+  }>(async (data) => {
+    const { accessToken } = await client
+      .post<{ accessToken: string }>("auth/login", {
+        json: { email: data.email, password: data.password },
+      })
+      .json();
+    setToken(accessToken);
+    push({ pathname: "/" });
+  });
   return (
     <main className="p-8 pb-32">
       <h2 className="text-xl font-medium">로그인</h2>
       <div className="pt-8"></div>
-      <form
-        className="space-y-8"
-        onSubmit={(e) => {
-          e.preventDefault();
-          push({ pathname: "/" });
-        }}
-      >
+      <ErrorMessage error={error} />
+      <form className="space-y-8" onSubmit={onSubmit}>
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="email">이메일</Label>
-          <Input id="email" type="email" />
+          <Input id="email" name="email" type="email" />
         </div>
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="password">비밀번호</Label>
-          <Input id="password" type="password" />
+          <Input id="password" name="password" type="password" />
         </div>
-        <Button>완료</Button>
+        <div className="flex gap-4">
+          <Button disabled={pending}>완료</Button>
+          <Button
+            disabled={pending}
+            onClick={() => {
+              push({ pathname: "/register" });
+            }}
+            variant="secondary"
+          >
+            회원가입
+          </Button>
+        </div>
       </form>
     </main>
   );

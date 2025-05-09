@@ -11,6 +11,7 @@ import {
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Card } from "../base/Card";
 import { Header } from "../base/Header";
+import { useAuthNavigator } from "./Auth";
 
 const chartData = [{ visitors: 62 }];
 
@@ -28,6 +29,7 @@ const dailyData = [
 ];
 
 export const Home = () => {
+  useAuthNavigator({ goToAuth: true });
   return (
     <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
       <Header title="요약" />

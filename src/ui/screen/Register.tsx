@@ -6,9 +6,10 @@ import { Button } from "../base/Button";
 import { ErrorMessage } from "../base/ErrorMessage";
 import { Input } from "../base/Input";
 import { Label } from "../base/Label";
-import { useAuth } from "./Auth";
+import { useAuth, useAuthNavigator } from "./Auth";
 
 export const Register = () => {
+  useAuthNavigator({ goToApp: true });
   const { push } = useRouter();
   const setToken = useAuth((auth) => auth.setToken);
   const { error, onSubmit, pending } = useForm<{
