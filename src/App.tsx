@@ -1,5 +1,6 @@
 import { BrowserRouter } from "router2";
 
+import { Gps } from "./ui/screen/Gps";
 import { Home } from "./ui/screen/Home";
 import { InfoForm } from "./ui/screen/InfoForm";
 import { Mission } from "./ui/screen/Mission";
@@ -17,6 +18,7 @@ export const App = () => {
         routes={{
           "/": () => <Home />,
           "/404": () => <div>404</div>,
+          "/gps": () => <Gps />,
           "/info-form": () => <InfoForm />,
           "/mission": () => <Mission />,
           "/receipt": () => <Receipt />,

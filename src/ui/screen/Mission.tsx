@@ -38,7 +38,7 @@ const Item = ({ score, title }: MissionData) => {
   return (
     <button
       className="mb-3 flex justify-between rounded-xl bg-zinc-900 p-3 duration-200 active:scale-95 active:opacity-95"
-      onClick={() => push({ pathname: "/receipt" })}
+      onClick={() => push({ pathname: "/gps" })}
     >
       <p>{title}</p>
       <span className="text-xs text-zinc-700">{score}점</span>
