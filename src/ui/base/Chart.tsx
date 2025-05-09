@@ -31,7 +31,7 @@ export const TotalChart = ({ data }: { data: Today }) => {
       />
       <PolarAngleAxis
         axisLine={false}
-        domain={[0, 100]}
+        domain={[0, data.targetPoints]}
         tick={false}
         type="number"
       />
