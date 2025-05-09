@@ -6,19 +6,19 @@ import { Splash } from "./ui/screen/Splash";
 
 export const App = () => {
   return (
-    <BrowserRouter
-      routes={{
-        "/": () => <Home />,
-        "/404": () => <div>404</div>,
-      }}
-    >
-      {(Page) => (
-        <Splash>
+    <Splash>
+      <BrowserRouter
+        routes={{
+          "/": () => <Home />,
+          "/404": () => <div>404</div>,
+        }}
+      >
+        {(Page) => (
           <ViewTransition>
             <Page />
           </ViewTransition>
-        </Splash>
-      )}
-    </BrowserRouter>
+        )}
+      </BrowserRouter>
+    </Splash>
   );
 };

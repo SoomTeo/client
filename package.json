@@ -10,6 +10,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "classnames": "^2.5.1",
+    "dayjs": "^1.11.13",
+    "lucide-react": "^0.509.0",
     "react": "0.0.0-experimental-38ef6550-20250508",
     "react-dom": "0.0.0-experimental-38ef6550-20250508",
     "router2": "^8.1.0"
