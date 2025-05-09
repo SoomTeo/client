@@ -1,15 +1,16 @@
 import { XIcon } from "lucide-react";
 import Webcam from "react-webcam";
 
+import { MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { useAuthNavigator } from "./Auth";
 
-export const Receipt = () => {
+export const Receipt = ({ title }: MissionData) => {
   useAuthNavigator({ goToAuth: true });
   return (
     <main className="p-8 pb-32">
       <div className="flex justify-between">
-        <h2 className="mb-8 text-xl font-medium">영수증 인증하기</h2>
+        <h2 className="mb-8 text-xl font-medium">{title}</h2>
         <Button onClick={() => history.back()} size="icon" variant="outline">
           <XIcon />
         </Button>

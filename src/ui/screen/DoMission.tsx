@@ -20,11 +20,11 @@ export const DoMission = () => {
     case MissionType.BUTTON:
       return <Read {...data} />;
     case MissionType.DIARY:
-      return <Diary />;
+      return <Diary {...data} />;
     case MissionType.GPS:
       return <Gps {...data} />;
     case MissionType.RECEIPT:
-      return <Receipt />;
+      return <Receipt {...data} />;
     case MissionType.VOICE:
       return <Voice {...data} />;
   }
