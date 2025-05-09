@@ -1,5 +1,6 @@
 import { BrowserRouter } from "router2";
 
+import { Auth } from "./ui/screen/Auth";
 import { Diary } from "./ui/screen/Diary";
 import { Gps } from "./ui/screen/Gps";
 import { Home } from "./ui/screen/Home";
@@ -17,25 +18,27 @@ import { Voice } from "./ui/screen/Voice";
 export const App = () => {
   return (
     <Splash>
-      <BrowserRouter
-        routes={{
-          "/": () => <Home />,
-          "/404": () => <div>404</div>,
-          "/diary": () => <Diary />,
-          "/gps": () => <Gps />,
-          "/info-form": () => <InfoForm />,
-          "/mission": () => <Mission />,
-          "/read": () => <Read />,
-          "/receipt": () => <Receipt />,
-          "/register": () => <Register />,
-          "/share": () => <Share />,
-          "/sign-in": () => <SignIn />,
-          "/test-form": () => <TestForm />,
-          "/voice": () => <Voice />,
-        }}
-      >
-        {(Page) => <Page />}
-      </BrowserRouter>
+      <Auth>
+        <BrowserRouter
+          routes={{
+            "/": () => <Home />,
+            "/404": () => <div>404</div>,
+            "/diary": () => <Diary />,
+            "/gps": () => <Gps />,
+            "/info-form": () => <InfoForm />,
+            "/mission": () => <Mission />,
+            "/read": () => <Read />,
+            "/receipt": () => <Receipt />,
+            "/register": () => <Register />,
+            "/share": () => <Share />,
+            "/sign-in": () => <SignIn />,
+            "/test-form": () => <TestForm />,
+            "/voice": () => <Voice />,
+          }}
+        >
+          {(Page) => <Page />}
+        </BrowserRouter>
+      </Auth>
     </Splash>
   );
 };

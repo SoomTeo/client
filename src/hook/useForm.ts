@@ -17,6 +17,8 @@ export const useForm = <T>(handleForm: (data: T) => Promise<unknown>) => {
       if (err instanceof HTTPError) {
         const response = await err.response.json();
         setError(response?.message ?? "다시 시도해주세요");
+      } else if (err instanceof Error) {
+        setError(err.message);
       } else {
         setError("다시 시도해주세요");
       }
