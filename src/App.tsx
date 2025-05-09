@@ -1,4 +1,5 @@
 import { BrowserRouter } from "router2";
+import { Toaster } from "sonner";
 
 import { Auth } from "./ui/screen/Auth";
 import { DoMission } from "./ui/screen/DoMission";
@@ -30,6 +31,7 @@ export const App = () => {
         >
           {(Page) => <Page />}
         </BrowserRouter>
+        <Toaster position="top-center" theme="dark" />
       </Auth>
     </Splash>
   );

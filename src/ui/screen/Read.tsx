@@ -1,11 +1,12 @@
 import { XIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import { useForm } from "../../hook/useForm";
-import { MissionData } from "../../service/data-type";
+import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { useAuth } from "./Auth";
 
-export const Read = ({ description, id, title }: MissionData) => {
+export const Read = ({ description, id, title, type }: MissionData) => {
   const client = useAuth((auth) => auth.client);
 
   const { onSubmit, pending } = useForm(async () => {
@@ -13,6 +14,7 @@ export const Read = ({ description, id, title }: MissionData) => {
       json: { isSuccess: true },
     });
     history.back();
+    toast(`${MISSION_POINTS[type]}점이 추가되었습니다.`);
   });
   return (
     <main className="p-8 pb-32">

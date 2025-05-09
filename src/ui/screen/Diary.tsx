@@ -1,13 +1,14 @@
 import { XIcon } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 import { useForm } from "../../hook/useForm";
-import { MissionData } from "../../service/data-type";
+import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { Textarea } from "../base/Textarea";
 import { useAuth, useAuthNavigator } from "./Auth";
 
-export const Diary = ({ description, id, title }: MissionData) => {
+export const Diary = ({ description, id, title, type }: MissionData) => {
   useAuthNavigator({ goToAuth: true });
   const client = useAuth((auth) => auth.client);
 
@@ -44,7 +45,10 @@ export const Diary = ({ description, id, title }: MissionData) => {
           </p>
           <Button
             className="mt-20 block w-full"
-            onClick={() => history.back()}
+            onClick={() => {
+              toast(`${MISSION_POINTS[type]}점이 추가되었습니다.`);
+              history.back();
+            }}
             type="button"
           >
             완료
