@@ -4,6 +4,7 @@ import { Gps } from "./ui/screen/Gps";
 import { Home } from "./ui/screen/Home";
 import { InfoForm } from "./ui/screen/InfoForm";
 import { Mission } from "./ui/screen/Mission";
+import { Read } from "./ui/screen/Read";
 import { Receipt } from "./ui/screen/Receipt";
 import { Register } from "./ui/screen/Register";
 import { Share } from "./ui/screen/Share";
@@ -22,6 +23,7 @@ export const App = () => {
           "/gps": () => <Gps />,
           "/info-form": () => <InfoForm />,
           "/mission": () => <Mission />,
+          "/read": () => <Read />,
           "/receipt": () => <Receipt />,
           "/register": () => <Register />,
           "/share": () => <Share />,
