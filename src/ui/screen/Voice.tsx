@@ -5,14 +5,15 @@ import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
 
+import { MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { useAuthNavigator } from "./Auth";
 
-export const Voice = () => {
+export const Voice = ({ description, title }: MissionData) => {
   useAuthNavigator({ goToAuth: true });
   const { listening, transcript } = useSpeechRecognition();
 
-  const score = transcript.split("안녕").length - 1;
+  const score = transcript.split(title).length - 1;
 
   useEffect(() => {
     SpeechRecognition.startListening({ continuous: true, language: "ko-KR" });
@@ -21,10 +22,12 @@ export const Voice = () => {
     };
   }, []);
 
+  console.log(transcript);
+
   return (
     <main className="p-8 pb-32">
       <div className="flex justify-between">
-        <h2 className="mb-8 text-xl font-medium">긍정적인 말하기</h2>
+        <h2 className="mb-8 text-xl font-medium">{title}</h2>
         <Button onClick={() => history.back()} size="icon" variant="outline">
           <XIcon />
         </Button>
@@ -37,8 +40,7 @@ export const Voice = () => {
           )}
         ></div>
       </div>
-      <h2 className="text-center text-xl font-medium">{`'사랑해' 라고 10번 말하세요`}</h2>
-
+      <h2 className="text-center text-xl font-medium">{description}</h2>
       <div className="mt-10">
         <span className="font-mono text-4xl">{score}/10</span>
       </div>

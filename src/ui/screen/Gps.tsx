@@ -4,14 +4,17 @@ import { XIcon } from "lucide-react";
 
 import { useDuration } from "../../hook/useDuration";
 import { useGeolocation } from "../../hook/useGeolocation";
+import { MissionData } from "../../service/data-type";
 import { getDistanceFromLatLonInMeters } from "../../service/util";
 import { Button } from "../base/Button";
-import { useAuthNavigator } from "./Auth";
 
 dayjs.extend(duration);
 
-export const Gps = () => {
-  useAuthNavigator({ goToAuth: true });
+export const Gps = ({
+  description,
+  title,
+  verificationData: { minDistance = 0, minDuration = 0 } = {},
+}: MissionData) => {
   const duration = useDuration();
   const { trace } = useGeolocation();
 
@@ -40,10 +43,12 @@ export const Gps = () => {
     },
   );
 
+  const isValid = distance >= minDistance && duration >= minDuration;
+
   return (
-    <main className="p-8 pb-32">
+    <main className="p-8">
       <div className="flex justify-between">
-        <h2 className="mb-8 text-xl font-medium">산책 인증하기</h2>
+        <h2 className="mb-8 text-xl font-medium">{title}</h2>
         <Button onClick={() => history.back()} size="icon" variant="outline">
           <XIcon />
         </Button>
@@ -51,7 +56,8 @@ export const Gps = () => {
       <div className="flex aspect-square items-center justify-center">
         <div className="size-20 animate-bounce rounded-full bg-white"></div>
       </div>
-      <div className="flex flex-col gap-1">
+      <h2 className="text-center text-xl font-medium">{description}</h2>
+      <div className="mt-10 flex flex-col gap-1">
         <span className="font-mono text-4xl">{distance.toLocaleString()}m</span>
         <span className="font-mono text-4xl">
           {dayjs
@@ -59,7 +65,7 @@ export const Gps = () => {
             .format(duration > 60 ? "m분 s초" : "s초")}
         </span>
       </div>
-      <Button className="mt-20 block w-full" disabled>
+      <Button className="mt-20 block w-full" disabled={!isValid}>
         완료
       </Button>
     </main>

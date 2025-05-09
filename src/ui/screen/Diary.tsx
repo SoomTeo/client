@@ -1,7 +1,7 @@
 import { XIcon } from "lucide-react";
 
 import { Button } from "../base/Button";
-import { Textarea } from "../base/TextArea";
+import { Textarea } from "../base/Textarea";
 import { useAuthNavigator } from "./Auth";
 
 export const Diary = () => {
