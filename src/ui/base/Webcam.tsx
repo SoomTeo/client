@@ -1,6 +1,5 @@
-import { ReactNode, useEffect, useRef, useState } from "react";
-
-import { ErrorMessage } from "./ErrorMessage";
+import classNames from "classnames";
+import { ReactNode, useEffect, useRef } from "react";
 
 export const Webcam = ({
   children,
@@ -12,8 +11,6 @@ export const Webcam = ({
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
-  const [error, setError] = useState<0 | 1 | string>(0);
-
   const startCamera = async () => {
     try {
       const stream = await navigator.mediaDevices.getUserMedia({
@@ -22,10 +19,8 @@ export const Webcam = ({
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
       }
-      setError(1);
     } catch (err) {
       console.error("Failed to access webcam", err);
-      setError("카메라에 접근할 수 없습니다.");
     }
   };
 
@@ -58,12 +53,19 @@ export const Webcam = ({
 
   return (
     <div>
-      {typeof error === "string" ? (
-        <ErrorMessage error={error} />
-      ) : error == 0 ? (
-        <button onClick={startCamera}>카메라 켜기</button>
-      ) : null}
-      <video autoPlay className={className} muted playsInline ref={videoRef} />
+      <video
+        autoPlay
+        className={classNames("w-full bg-zinc-900", className)}
+        muted
+        onClick={() => {
+          if (!videoRef.current?.srcObject) {
+            startCamera();
+            console.log("init cam");
+          }
+        }}
+        playsInline
+        ref={videoRef}
+      />
       <canvas ref={canvasRef} style={{ display: "none" }} />
       {children({ takeScreenshot })}
     </div>
