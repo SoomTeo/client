@@ -6,8 +6,10 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 
 import { Button } from "../base/Button";
+import { useAuthNavigator } from "./Auth";
 
 export const Voice = () => {
+  useAuthNavigator({ goToAuth: true });
   const { listening, transcript } = useSpeechRecognition();
 
   const score = transcript.split("안녕").length - 1;

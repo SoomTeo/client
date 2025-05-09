@@ -2,6 +2,7 @@ import { useRouter } from "router2";
 
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Header } from "../base/Header";
+import { useAuthNavigator } from "./Auth";
 
 type MissionData = {
   id: number;
@@ -18,6 +19,7 @@ const items: MissionData[] = [
 ];
 
 export const Mission = () => {
+  useAuthNavigator({ goToAuth: true });
   return (
     <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
       <Header title="미션" />

@@ -6,9 +6,10 @@ import { ErrorMessage } from "../base/ErrorMessage";
 import { Input } from "../base/Input";
 import { Label } from "../base/Label";
 import { RadioGroup, RadioGroupItem } from "../base/Radio";
-import { useAuth } from "./Auth";
+import { useAuth, useAuthNavigator } from "./Auth";
 
 export const InfoForm = () => {
+  useAuthNavigator({ goToAuth: true });
   const { push } = useRouter();
   const client = useAuth((auth) => auth.client);
   const { error, onSubmit, pending } = useForm<{

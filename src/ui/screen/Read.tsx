@@ -1,8 +1,10 @@
 import { XIcon } from "lucide-react";
 
 import { Button } from "../base/Button";
+import { useAuthNavigator } from "./Auth";
 
 export const Read = () => {
+  useAuthNavigator({ goToAuth: true });
   return (
     <main className="p-8 pb-32">
       <div className="flex justify-between">

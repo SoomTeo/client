@@ -6,9 +6,10 @@ import { Button } from "../base/Button";
 import { ErrorMessage } from "../base/ErrorMessage";
 import { Label } from "../base/Label";
 import { RadioGroup, RadioGroupItem } from "../base/Radio";
-import { useAuth } from "./Auth";
+import { useAuth, useAuthNavigator } from "./Auth";
 
 export const TestForm = () => {
+  useAuthNavigator({ goToAuth: true });
   const { push } = useRouter();
   const client = useAuth((auth) => auth.client);
   const { data } = useSWR<

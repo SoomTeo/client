@@ -6,10 +6,12 @@ import { useDuration } from "../../hook/useDuration";
 import { useGeolocation } from "../../hook/useGeolocation";
 import { getDistanceFromLatLonInMeters } from "../../service/util";
 import { Button } from "../base/Button";
+import { useAuthNavigator } from "./Auth";
 
 dayjs.extend(duration);
 
 export const Gps = () => {
+  useAuthNavigator({ goToAuth: true });
   const duration = useDuration();
   const { trace } = useGeolocation();
 
