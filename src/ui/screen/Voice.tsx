@@ -4,13 +4,24 @@ import { useEffect } from "react";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
+import { toast } from "sonner";
 
-import { MissionData } from "../../service/data-type";
+import { useForm } from "../../hook/useForm";
+import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
-import { useAuthNavigator } from "./Auth";
+import { useAuth } from "./Auth";
 
-export const Voice = ({ description, title }: MissionData) => {
-  useAuthNavigator({ goToAuth: true });
+export const Voice = ({ description, id, title, type }: MissionData) => {
+  const client = useAuth((auth) => auth.client);
+
+  const { onSubmit, pending } = useForm(async () => {
+    await client.post<{ feedback: string }>(`mission/${id}/complete`, {
+      json: { isSuccess: true },
+    });
+    history.back();
+    toast(`${MISSION_POINTS[type]}점이 추가되었습니다.`);
+  });
+
   const { listening, transcript } = useSpeechRecognition();
 
   const score = transcript.split(title).length - 1;
@@ -44,9 +55,11 @@ export const Voice = ({ description, title }: MissionData) => {
       <div className="mt-10">
         <span className="font-mono text-4xl">{score}/10</span>
       </div>
-      <Button className="mt-20 block w-full" disabled={score < 10}>
-        완료
-      </Button>
+      <form onSubmit={onSubmit}>
+        <Button className="mt-20 block w-full" disabled={score < 10 || pending}>
+          완료
+        </Button>
+      </form>
     </main>
   );
 };

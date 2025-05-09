@@ -6,7 +6,7 @@ import { usePromise } from "../../hook/usePromise";
 import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { ErrorMessage } from "../base/ErrorMessage";
-import { useAuth, useAuthNavigator } from "./Auth";
+import { useAuth } from "./Auth";
 
 const createBlobFromBase64 = (image: string) => {
   const [meta, base64] = image.split(",");
@@ -25,7 +25,6 @@ const createBlobFromBase64 = (image: string) => {
 };
 
 export const Receipt = ({ id, title, type }: MissionData) => {
-  useAuthNavigator({ goToAuth: true });
   const client = useAuth((auth) => auth.client);
   const { error, pending, run } = usePromise(async (image: string) => {
     const form = new FormData();

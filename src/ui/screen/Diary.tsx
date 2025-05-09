@@ -6,10 +6,9 @@ import { useForm } from "../../hook/useForm";
 import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
 import { Textarea } from "../base/Textarea";
-import { useAuth, useAuthNavigator } from "./Auth";
+import { useAuth } from "./Auth";
 
 export const Diary = ({ description, id, title, type }: MissionData) => {
-  useAuthNavigator({ goToAuth: true });
   const client = useAuth((auth) => auth.client);
 
   const [feedback, setFeedback] = useState<null | string>(null);
