@@ -3,7 +3,7 @@ import useSWR from "swr";
 
 import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { BottomNavigation } from "../base/BottomNavigation";
-import { Header } from "../base/Header_";
+import { Header } from "../base/Header";
 import { useAuthNavigator } from "./Auth";
 
 export const Mission = () => {

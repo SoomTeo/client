@@ -4,7 +4,7 @@ import { Stat } from "../../service/data-type";
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Card } from "../base/Card";
 import { LineChart, TotalChart } from "../base/Chart";
-import { Header } from "../base/Header_";
+import { Header } from "../base/Header";
 import { useAuthNavigator } from "./Auth";
 
 export const Home = () => {
