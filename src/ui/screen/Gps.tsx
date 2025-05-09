@@ -1,22 +1,37 @@
 import dayjs from "dayjs";
 import duration from "dayjs/plugin/duration";
 import { XIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import { useDuration } from "../../hook/useDuration";
+import { useForm } from "../../hook/useForm";
 import { useGeolocation } from "../../hook/useGeolocation";
-import { MissionData } from "../../service/data-type";
+import { MISSION_POINTS, MissionData } from "../../service/data-type";
 import { getDistanceFromLatLonInMeters } from "../../service/util";
 import { Button } from "../base/Button";
+import { useAuth } from "./Auth";
 
 dayjs.extend(duration);
 
 export const Gps = ({
   description,
+  id,
   title,
+  type,
   verificationData: { minDistance = 0, minDuration = 0 } = {},
 }: MissionData) => {
   const duration = useDuration();
   const { trace } = useGeolocation();
+
+  const client = useAuth((auth) => auth.client);
+
+  const { onSubmit, pending } = useForm(async () => {
+    await client.post<{ feedback: string }>(`mission/${id}/complete`, {
+      json: { isSuccess: true },
+    });
+    history.back();
+    toast(`${MISSION_POINTS[type]}점이 추가되었습니다.`);
+  });
 
   const { distance } = trace.slice(1).reduce(
     (acc, cur) => {
@@ -65,9 +80,11 @@ export const Gps = ({
             .format(duration > 60 ? "m분 s초" : "s초")}
         </span>
       </div>
-      <Button className="mt-20 block w-full" disabled={!isValid}>
-        완료
-      </Button>
+      <form onSubmit={onSubmit}>
+        <Button className="mt-20 block w-full" disabled={!isValid || pending}>
+          완료
+        </Button>
+      </form>
     </main>
   );
 };
