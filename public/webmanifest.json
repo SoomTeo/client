@@ -1,0 +1,27 @@
+{
+  "background_color": "#000000",
+  "description": "",
+  "display": "standalone",
+  "icons": [
+    {
+      "sizes": "192x192",
+      "src": "/pwa-192x192.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "64x64",
+      "src": "/pwa-64x64.png",
+      "type": "image/png"
+    },
+    {
+      "sizes": "512x512",
+      "src": "/pwa-512x512.png",
+      "type": "image/png"
+    }
+  ],
+  "name": "숨토",
+  "scope": "/",
+  "short_name": "숨토",
+  "start_url": "/",
+  "theme_color": "#000000"
+}
