@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import useSWR from "swr";
 
 import {
   Drawer,
@@ -11,6 +12,11 @@ import {
 const today = dayjs();
 const week = ["일", "월", "화", "수", "목", "금", "토"];
 export const Header = ({ title }: { title: string }) => {
+  const { data } = useSWR<{
+    email: string;
+    level: "high" | "low" | "middle";
+    nickname: string;
+  }>(`user/profile`);
   return (
     <header className="flex items-end justify-between">
       <div>
@@ -32,9 +38,9 @@ export const Header = ({ title }: { title: string }) => {
               <span className="block size-16 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
               <div className="flex flex-col">
                 <span className="text-base font-medium">
-                  히키코모리탈출하기!
+                  {data?.nickname || "닉네임 없음"}
                 </span>
-                <span className="text-zinc-700">dleeleex@gmail.com</span>
+                <span className="text-zinc-700">{data?.email}</span>
               </div>
             </div>
           </div>
