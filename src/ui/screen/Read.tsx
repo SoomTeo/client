@@ -1,9 +1,19 @@
 import { XIcon } from "lucide-react";
 
+import { useForm } from "../../hook/useForm";
 import { MissionData } from "../../service/data-type";
 import { Button } from "../base/Button";
+import { useAuth } from "./Auth";
 
-export const Read = ({ description, title }: MissionData) => {
+export const Read = ({ description, id, title }: MissionData) => {
+  const client = useAuth((auth) => auth.client);
+
+  const { onSubmit, pending } = useForm(async () => {
+    await client.post<{ feedback: string }>(`mission/${id}/complete`, {
+      json: { isSuccess: true },
+    });
+    history.back();
+  });
   return (
     <main className="p-8 pb-32">
       <div className="flex justify-between">
@@ -15,7 +25,11 @@ export const Read = ({ description, title }: MissionData) => {
       <div className="rounded-xl bg-zinc-900 p-4 break-keep whitespace-pre-wrap">
         {description}
       </div>
-      <Button className="mt-20 block w-full">완료</Button>
+      <form onSubmit={onSubmit}>
+        <Button className="mt-20 block w-full" disabled={pending}>
+          완료
+        </Button>
+      </form>
     </main>
   );
 };
