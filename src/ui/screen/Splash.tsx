@@ -16,7 +16,7 @@ export const Splash = ({ children }: { children: ReactNode }) => {
       startTransition(() => {
         setIsLoading(false);
       });
-    }, 2000);
+    }, 1500);
   }, []);
 
   if (isLoading) {
