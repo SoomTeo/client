@@ -1,7 +1,24 @@
+import { unstable_ViewTransition as ViewTransition } from "react";
+import { BrowserRouter } from "router2";
+
+import { Home } from "./ui/screen/Home";
+import { Splash } from "./ui/screen/Splash";
+
 export const App = () => {
   return (
-    <div>
-      <h1 className="text-lg font-extrabold">숨터</h1>
-    </div>
+    <BrowserRouter
+      routes={{
+        "/": () => <Home />,
+        "/404": () => <div>404</div>,
+      }}
+    >
+      {(Page) => (
+        <Splash>
+          <ViewTransition>
+            <Page />
+          </ViewTransition>
+        </Splash>
+      )}
+    </BrowserRouter>
   );
 };
