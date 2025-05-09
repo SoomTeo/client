@@ -13,7 +13,7 @@ import {
   DrawerTrigger,
 } from "../base/Drawer";
 import { ErrorMessage } from "../base/ErrorMessage";
-import { Header } from "../base/Header";
+import { Header } from "../base/Header_";
 import { useAuth, useAuthNavigator } from "./Auth";
 
 export const Share = () => {
