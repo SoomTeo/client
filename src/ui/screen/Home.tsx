@@ -1,4 +1,3 @@
-import dayjs from "dayjs";
 import {
   Bar,
   BarChart,
@@ -11,6 +10,7 @@ import {
 
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Card } from "../base/Card";
+import { Header } from "../base/header";
 
 const chartData = [{ visitors: 62 }];
 
@@ -29,8 +29,8 @@ const dailyData = [
 
 export const Home = () => {
   return (
-    <main className="min-h-screen min-w-screen bg-black p-5 pb-40 text-sm text-white/90">
-      <Header />
+    <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
+      <Header title="요약" />
       <div className="mt-5 grid grid-cols-2 gap-5">
         <Card className="col-span-2" title="오늘">
           <div className="flex items-center gap-4 p-5">
@@ -65,23 +65,6 @@ export const Home = () => {
   );
 };
 
-const today = dayjs();
-const week = ["일", "월", "화", "수", "목", "금", "토"];
-const Header = () => {
-  return (
-    <header className="flex items-end justify-between">
-      <div>
-        <span className="block text-sm font-medium text-zinc-500">
-          {today.format("M월 D일")} {week[today.get("day")]}요일
-        </span>
-        <span className="block pt-1 text-3xl font-semibold">요약</span>
-      </div>
-      <div>
-        <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
-      </div>
-    </header>
-  );
-};
 const TotalChart = () => {
   return (
     <RadialBarChart
