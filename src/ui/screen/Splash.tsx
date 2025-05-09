@@ -22,7 +22,7 @@ export const Splash = ({ children }: { children: ReactNode }) => {
   if (isLoading) {
     return (
       <ViewTransition>
-        <div className="fixed inset-0 flex items-center justify-center bg-white">
+        <div className="fixed inset-0 flex items-center justify-center">
           <Logo />
         </div>
       </ViewTransition>
