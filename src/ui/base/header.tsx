@@ -61,7 +61,7 @@ export const Header = ({ title }: { title: string }) => {
               </div>
             </div>
             {friendRequests && (
-              <div className="mt-9 max-h-[50vh] overflow-y-scroll rounded-xl bg-zinc-900 px-5 py-2">
+              <div className="mt-9 h-[30vh] overflow-y-scroll rounded-xl bg-zinc-900 px-5 py-2">
                 {friendRequests?.map((user) => (
                   <div
                     className="flex items-center justify-between py-2"
@@ -81,6 +81,13 @@ export const Header = ({ title }: { title: string }) => {
                     </Button>
                   </div>
                 ))}
+                {friendRequests.length === 0 && (
+                  <div className="flex h-full items-center justify-center">
+                    <span className="text-sm text-zinc-500">
+                      친구 요청이 없습니다.
+                    </span>
+                  </div>
+                )}
               </div>
             )}
           </div>

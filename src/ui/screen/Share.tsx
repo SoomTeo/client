@@ -17,6 +17,7 @@ import { useAuth, useAuthNavigator } from "./Auth";
 
 export const Share = () => {
   useAuthNavigator({ goToAuth: true });
+  const { data } = useSWR<{ id: number; nickname: string }[]>(`friend`);
   return (
     <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
       <Header title="공유하기" />
@@ -30,6 +31,16 @@ export const Share = () => {
           서로의 성과를 응원해보세요.
         </p>
         <FindFriendDrawer />
+      </div>
+      <div className="animate-in slide-in-from-bottom-2 fade-in mt-9 rounded-xl bg-zinc-900 px-5 py-2 duration-700">
+        {data?.map((user) => (
+          <div className="flex items-center justify-between py-2" key={user.id}>
+            <div className="flex items-center gap-2">
+              <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+              <span>{user.nickname}</span>
+            </div>
+          </div>
+        ))}
       </div>
       <BottomNavigation />
     </main>
@@ -77,7 +88,13 @@ const FindFriendDrawer = () => {
                 </Button>
               </div>
             ))}
-            {data?.length == 0 && "이미 친구가 많네요. 당신은 인싸!"}
+            {data?.length == 0 && (
+              <div className="flex h-full items-center justify-center">
+                <span className="text-sm text-zinc-500">
+                  이미 친구가 많네요. 당신은 인싸!
+                </span>
+              </div>
+            )}
           </div>
         </div>
       </DrawerContent>
