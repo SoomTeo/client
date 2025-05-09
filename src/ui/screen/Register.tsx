@@ -1,13 +1,22 @@
+import { useRouter } from "router2";
+
 import { Button } from "../base/Button";
 import { Input } from "../base/Input";
 import { Label } from "../base/Label";
 
 export const Register = () => {
+  const { push } = useRouter();
   return (
     <main className="p-8">
       <h2 className="text-xl font-medium">회원가입</h2>
       <div className="pt-8"></div>
-      <form className="space-y-8">
+      <form
+        className="space-y-8"
+        onSubmit={(e) => {
+          e.preventDefault();
+          push({ pathname: "/info-form" });
+        }}
+      >
         <div className="grid w-full max-w-sm items-center gap-1.5">
           <Label htmlFor="name">닉네임</Label>
           <Input id="name" type="text" />
