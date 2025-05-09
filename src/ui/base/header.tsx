@@ -1,5 +1,13 @@
 import dayjs from "dayjs";
 
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "./Drawer";
+
 const today = dayjs();
 const week = ["일", "월", "화", "수", "목", "금", "토"];
 export const Header = ({ title }: { title: string }) => {
@@ -11,9 +19,27 @@ export const Header = ({ title }: { title: string }) => {
         </span>
         <span className="block pt-1 text-3xl font-semibold">{title}</span>
       </div>
-      <div>
-        <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
-      </div>
+      <Drawer>
+        <DrawerTrigger asChild>
+          <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+        </DrawerTrigger>
+        <DrawerContent>
+          <DrawerHeader>
+            <DrawerTitle>계정</DrawerTitle>
+          </DrawerHeader>
+          <div className="p-4 pb-32">
+            <div className="flex items-center gap-3">
+              <span className="block size-16 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+              <div className="flex flex-col">
+                <span className="text-base font-medium">
+                  히키코모리탈출하기!
+                </span>
+                <span className="text-zinc-700">dleeleex@gmail.com</span>
+              </div>
+            </div>
+          </div>
+        </DrawerContent>
+      </Drawer>
     </header>
   );
 };
