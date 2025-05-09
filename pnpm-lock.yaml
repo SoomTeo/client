@@ -29,6 +29,9 @@ importers:
       react-dom:
         specifier: 0.0.0-experimental-38ef6550-20250508
         version: 0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508)
+      react-webcam:
+        specifier: ^7.2.0
+        version: 7.2.0(react-dom@0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508))(react@0.0.0-experimental-38ef6550-20250508)
       recharts:
         specifier: ^2.15.3
         version: 2.15.3(react-dom@0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508))(react@0.0.0-experimental-38ef6550-20250508)
@@ -2162,6 +2165,12 @@ packages:
     peerDependencies:
       react: '>=16.6.0'
       react-dom: '>=16.6.0'
+
+  react-webcam@7.2.0:
+    resolution: {integrity: sha512-xkrzYPqa1ag2DP+2Q/kLKBmCIfEx49bVdgCCCcZf88oF+0NPEbkwYk3/s/C7Zy0mhM8k+hpdNkBLzxg8H0aWcg==}
+    peerDependencies:
+      react: '>=16.2.0'
+      react-dom: '>=16.2.0'
 
   react@0.0.0-experimental-38ef6550-20250508:
     resolution: {integrity: sha512-0cBQdEO2/kemqIz+xKFPNvKtUyn/P7UAadAfg7u3NRgqh3tze60R4JN2phs7alyJWN3nE5kP/ysUShnaX47oQA==}
@@ -4614,6 +4623,11 @@ snapshots:
       dom-helpers: 5.2.1
       loose-envify: 1.4.0
       prop-types: 15.8.1
+      react: 0.0.0-experimental-38ef6550-20250508
+      react-dom: 0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508)
+
+  react-webcam@7.2.0(react-dom@0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508))(react@0.0.0-experimental-38ef6550-20250508):
+    dependencies:
       react: 0.0.0-experimental-38ef6550-20250508
       react-dom: 0.0.0-experimental-38ef6550-20250508(react@0.0.0-experimental-38ef6550-20250508)
 

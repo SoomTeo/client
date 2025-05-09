@@ -1,3 +1,5 @@
+import { useRouter } from "router2";
+
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Header } from "../base/Header";
 
@@ -32,8 +34,12 @@ export const Mission = () => {
 };
 
 const Item = ({ score, title }: MissionData) => {
+  const { push } = useRouter();
   return (
-    <button className="mb-3 flex justify-between rounded-xl bg-zinc-900 p-3 duration-200 active:scale-95 active:opacity-95">
+    <button
+      className="mb-3 flex justify-between rounded-xl bg-zinc-900 p-3 duration-200 active:scale-95 active:opacity-95"
+      onClick={() => push({ pathname: "/receipt" })}
+    >
       <p>{title}</p>
       <span className="text-xs text-zinc-700">{score}점</span>
     </button>

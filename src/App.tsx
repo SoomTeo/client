@@ -3,6 +3,7 @@ import { BrowserRouter } from "router2";
 import { Home } from "./ui/screen/Home";
 import { InfoForm } from "./ui/screen/InfoForm";
 import { Mission } from "./ui/screen/Mission";
+import { Receipt } from "./ui/screen/Receipt";
 import { Register } from "./ui/screen/Register";
 import { Share } from "./ui/screen/Share";
 import { SignIn } from "./ui/screen/SignIn";
@@ -18,6 +19,7 @@ export const App = () => {
           "/404": () => <div>404</div>,
           "/info-form": () => <InfoForm />,
           "/mission": () => <Mission />,
+          "/receipt": () => <Receipt />,
           "/register": () => <Register />,
           "/share": () => <Share />,
           "/sign-in": () => <SignIn />,
