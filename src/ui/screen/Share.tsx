@@ -1,4 +1,5 @@
 import { Plus, UsersRound } from "lucide-react";
+import { useRouter } from "router2";
 import useSWR from "swr";
 
 import { usePromise } from "../../hook/usePromise";
@@ -17,6 +18,7 @@ import { useAuth, useAuthNavigator } from "./Auth";
 
 export const Share = () => {
   useAuthNavigator({ goToAuth: true });
+  const { push } = useRouter();
   const { data } = useSWR<{ id: number; nickname: string }[]>(`friend`);
   return (
     <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
@@ -34,12 +36,16 @@ export const Share = () => {
       </div>
       <div className="animate-in slide-in-from-bottom-2 fade-in mt-9 rounded-xl bg-zinc-900 px-5 py-2 duration-700">
         {data?.map((user) => (
-          <div className="flex items-center justify-between py-2" key={user.id}>
+          <button
+            className="flex items-center justify-between py-2 duration-200 active:scale-95 active:opacity-95"
+            key={user.id}
+            onClick={() => push({ pathname: `/user/${user.id}` })}
+          >
             <div className="flex items-center gap-2">
               <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
               <span>{user.nickname}</span>
             </div>
-          </div>
+          </button>
         ))}
       </div>
       <BottomNavigation />

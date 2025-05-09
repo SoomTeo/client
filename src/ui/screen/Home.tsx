@@ -1,17 +1,9 @@
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  PolarAngleAxis,
-  RadialBar,
-  RadialBarChart,
-  ResponsiveContainer,
-} from "recharts";
 import useSWR from "swr";
 
-import { Stat, Today } from "../../service/data-type";
+import { Stat } from "../../service/data-type";
 import { BottomNavigation } from "../base/BottomNavigation";
 import { Card } from "../base/Card";
+import { LineChart, TotalChart } from "../base/Chart";
 import { Header } from "../base/Header";
 import { useAuthNavigator } from "./Auth";
 
@@ -61,52 +53,3 @@ export const Home = () => {
     </main>
   );
 };
-
-const TotalChart = ({ data }: { data: Today }) => {
-  return (
-    <RadialBarChart
-      cx="50%"
-      cy="50%"
-      data={[data]}
-      endAngle={-270}
-      height={140}
-      innerRadius="80%"
-      outerRadius="130%"
-      startAngle={90}
-      width={140}
-    >
-      <RadialBar
-        background={{ className: "fill-rose-600/10" }}
-        className="fill-rose-600"
-        cornerRadius={50}
-        dataKey="progress"
-      />
-      <PolarAngleAxis
-        axisLine={false}
-        domain={[0, 100]}
-        tick={false}
-        type="number"
-      />
-    </RadialBarChart>
-  );
-};
-function LineChart({
-  barClassName,
-  data,
-}: {
-  barClassName?: string;
-  data: { progress: number }[];
-}) {
-  return (
-    <ResponsiveContainer maxHeight={80}>
-      <BarChart data={data}>
-        <CartesianGrid
-          className="stroke-zinc-800"
-          horizontal={false}
-          syncWithTicks
-        />
-        <Bar className={barClassName} dataKey="progress" radius={2} />
-      </BarChart>
-    </ResponsiveContainer>
-  );
-}

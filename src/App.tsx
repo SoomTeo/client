@@ -11,6 +11,7 @@ import { Share } from "./ui/screen/Share";
 import { SignIn } from "./ui/screen/SignIn";
 import { Splash } from "./ui/screen/Splash";
 import { TestForm } from "./ui/screen/TestForm";
+import { User } from "./ui/screen/User";
 
 export const App = () => {
   return (
@@ -27,6 +28,7 @@ export const App = () => {
             "/share": () => <Share />,
             "/sign-in": () => <SignIn />,
             "/test-form": () => <TestForm />,
+            "/user/:id": () => <User />,
           }}
         >
           {(Page) => <Page />}
