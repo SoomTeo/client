@@ -34,7 +34,7 @@ export const Share = () => {
         </p>
         <FindFriendDrawer />
       </div>
-      {data?.length && (
+      {data && data.length > 0 && (
         <div className="animate-in slide-in-from-bottom-2 fade-in mt-9 rounded-xl bg-zinc-900 px-5 py-2 duration-700">
           {data.map((user) => (
             <button
