@@ -1,6 +1,10 @@
 import dayjs from "dayjs";
+import { Check } from "lucide-react";
 import useSWR from "swr";
 
+import { usePromise } from "../../hook/usePromise";
+import { useAuth } from "../screen/Auth";
+import { Button } from "./Button";
 import {
   Drawer,
   DrawerContent,
@@ -12,11 +16,24 @@ import {
 const today = dayjs();
 const week = ["일", "월", "화", "수", "목", "금", "토"];
 export const Header = ({ title }: { title: string }) => {
+  const client = useAuth((auth) => auth.client);
   const { data } = useSWR<{
     email: string;
     level: "high" | "low" | "middle";
     nickname: string;
   }>(`user/profile`);
+  const { data: friendRequests, mutate } = useSWR<
+    {
+      fromUserNickname: string;
+      id: 11;
+    }[]
+  >(`friend/requests`);
+  const { pending, run } = usePromise(
+    async (payload: { accept: boolean; requestId: number }) => {
+      await client.post(`friend/respond`, { json: payload });
+      await mutate();
+    },
+  );
   return (
     <header className="flex items-end justify-between">
       <div>
@@ -43,6 +60,29 @@ export const Header = ({ title }: { title: string }) => {
                 <span className="text-zinc-700">{data?.email}</span>
               </div>
             </div>
+            {friendRequests && (
+              <div className="mt-9 max-h-[50vh] overflow-y-scroll rounded-xl bg-zinc-900 px-5 py-2">
+                {friendRequests?.map((user) => (
+                  <div
+                    className="flex items-center justify-between py-2"
+                    key={user.id}
+                  >
+                    <div className="flex items-center gap-2">
+                      <span className="block size-8 rounded-full bg-gradient-to-br from-pink-300 to-emerald-500"></span>
+                      <span>{user.fromUserNickname}</span>
+                    </div>
+                    <Button
+                      disabled={pending}
+                      onClick={() => run({ accept: true, requestId: user.id })}
+                      size="icon"
+                      variant="secondary"
+                    >
+                      <Check />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </DrawerContent>
       </Drawer>
