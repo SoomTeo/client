@@ -47,9 +47,9 @@ export const Receipt = ({ id, title, type }: MissionData) => {
       <ErrorMessage error={error} />
       <Webcam
         audio={false}
-        className="aspect-[3/4] rounded-md object-cover"
+        // className="aspect-[3/4] rounded-md object-cover"
         screenshotFormat="image/jpeg"
-        videoConstraints={{ facingMode: { ideal: "environment" } }}
+        // videoConstraints={{ facingMode: { ideal: "environment" } }}
       >
         {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
         {/* @ts-expect-error */}

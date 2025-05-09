@@ -18,7 +18,7 @@ const Button = ({
   return (
     <button
       className={classNames(
-        "flex flex-1 flex-col items-center gap-1 pt-2 pb-2",
+        "flex flex-1 flex-col items-center gap-1 pt-2 pb-[max(1.25rem,env(safe-area-inset-bottom))]",
         selected ? "text-lime-400" : "text-zinc-500",
       )}
       onClick={onClick}
@@ -33,7 +33,7 @@ const Button = ({
 export const BottomNavigation = () => {
   const { path, replace } = useRouter();
   return (
-    <nav className="fixed inset-x-0 bottom-0 flex justify-between bg-white/10 pb-[env(safe-area-inset-bottom)] backdrop-blur-lg">
+    <nav className="fixed inset-x-0 bottom-0 flex justify-between bg-white/10 backdrop-blur-lg">
       <Button
         icon={<TrendingUp />}
         label="요약"

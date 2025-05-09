@@ -1,5 +1,5 @@
 {
-  "background_color": "#000000",
+  "background_color": "#0a0a0a",
   "description": "",
   "display": "standalone",
   "icons": [
@@ -23,5 +23,5 @@
   "scope": "/",
   "short_name": "숨토",
   "start_url": "/",
-  "theme_color": "#000000"
+  "theme_color": "#0a0a0a"
 }
