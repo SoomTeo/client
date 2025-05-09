@@ -15,12 +15,12 @@ const Button = ({
   return (
     <button
       className={classNames(
-        "flex flex-1 flex-col items-center gap-1 pt-2 pb-4",
+        "flex flex-1 flex-col items-center gap-1 pt-2 pb-2",
         selected ? "text-lime-400" : "text-zinc-500",
       )}
       type="button"
     >
-      <span className="text-">{icon}</span>
+      <span>{icon}</span>
       <span className="text-xs">{label}</span>
     </button>
   );
