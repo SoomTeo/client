@@ -8,7 +8,7 @@ import { RadioGroup, RadioGroupItem } from "../base/Radio";
 export const InfoForm = () => {
   const { push } = useRouter();
   return (
-    <main className="p-8">
+    <main className="p-8 pb-32">
       <h2 className="text-xl font-medium">정보 입력</h2>
       <div className="pt-8"></div>
       <form

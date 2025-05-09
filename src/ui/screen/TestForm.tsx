@@ -1,3 +1,9 @@
+import { useRouter } from "router2";
+
+import { Button } from "../base/Button";
+import { Label } from "../base/Label";
+import { RadioGroup, RadioGroupItem } from "../base/Radio";
+
 const data = [
   {
     content:
@@ -91,16 +97,42 @@ const data = [
 ];
 
 export const TestForm = () => {
+  const { push } = useRouter();
   return (
-    <main className="p-8">
+    <main className="p-8 pb-32">
       <h2 className="text-xl font-medium">기본 검사</h2>
       <div className="pt-8"></div>
       <form
-        className="space-y-8"
+        className="space-y-12"
         onSubmit={(e) => {
           e.preventDefault();
+          push({ pathname: "/" });
         }}
-      ></form>
+      >
+        {data.map((item) => (
+          <div className="space-y-3" key={item.questionId}>
+            <label className="block text-lg">{item.content}</label>
+            <RadioGroup className="flex flex-col space-y-1">
+              {[
+                ["해당되지 않는다.", "0"],
+                ["별로 해당되지 않는다.", "1"],
+                ["어느 쪽도 아니다.", "2"],
+                ["조금 해당된다.", "3"],
+                ["해당된다.", "4"],
+              ].map((option, index) => (
+                <div
+                  className="flex items-center space-y-0 space-x-3"
+                  key={index}
+                >
+                  <RadioGroupItem value={option[1]} />
+                  <Label className="font-normal">{option[0]}</Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+        ))}
+        <Button>완료</Button>
+      </form>
     </main>
   );
 };

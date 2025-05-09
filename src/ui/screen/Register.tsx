@@ -7,7 +7,7 @@ import { Label } from "../base/Label";
 export const Register = () => {
   const { push } = useRouter();
   return (
-    <main className="p-8">
+    <main className="p-8 pb-32">
       <h2 className="text-xl font-medium">회원가입</h2>
       <div className="pt-8"></div>
       <form
