@@ -27,13 +27,10 @@ export const Voice = ({ description, id, title, type }: MissionData) => {
   const score = transcript.split(title).length - 1;
 
   useEffect(() => {
-    SpeechRecognition.startListening({ continuous: true, language: "ko-KR" });
     return () => {
       SpeechRecognition.stopListening();
     };
   }, []);
-
-  console.log(transcript);
 
   return (
     <main className="p-8 pb-32">
@@ -43,7 +40,15 @@ export const Voice = ({ description, id, title, type }: MissionData) => {
           <XIcon />
         </Button>
       </div>
-      <div className="flex aspect-square items-center justify-center">
+      <div
+        className="flex aspect-square items-center justify-center"
+        onClick={() =>
+          SpeechRecognition.startListening({
+            continuous: true,
+            language: "ko-KR",
+          })
+        }
+      >
         <div
           className={classNames(
             "size-20 rounded-full bg-white",
