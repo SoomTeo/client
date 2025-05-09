@@ -9,9 +9,10 @@ import { useAuthNavigator } from "./Auth";
 export const Mission = () => {
   useAuthNavigator({ goToAuth: true });
   const { data } = useSWR<MissionData[]>("mission");
-  const newMissions = data?.filter(
-    (mission) => mission.completions.length === 0,
-  );
+  const newMissions = data
+    ?.filter((mission) => mission.completions.length === 0)
+    .slice()
+    .reverse();
   return (
     <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
       <Header title="미션" />

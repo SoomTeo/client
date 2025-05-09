@@ -45,7 +45,7 @@ export const TestForm = () => {
       <ErrorMessage error={error} />
       <form onSubmit={onSubmit}>
         {data && (
-          <div className="animate-in slide-in-from-bottom-2 fade-in space-y-12">
+          <div className="animate-in slide-in-from-bottom-2 fade-in space-y-12 duration-700">
             {data.map((item) => (
               <div className="space-y-3" key={item.questionId}>
                 <label className="block text-lg">{item.content}</label>
