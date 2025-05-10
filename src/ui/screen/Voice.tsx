@@ -27,6 +27,7 @@ export const Voice = ({ description, id, title, type }: MissionData) => {
   const score = transcript.split(title).length - 1;
 
   useEffect(() => {
+    toast("흰색 점을 탭해서 시작하세요.");
     return () => {
       SpeechRecognition.stopListening();
     };

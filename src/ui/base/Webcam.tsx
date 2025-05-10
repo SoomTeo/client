@@ -1,5 +1,6 @@
 import classNames from "classnames";
 import { ReactNode, useEffect, useRef } from "react";
+import { toast } from "sonner";
 
 export const Webcam = ({
   children,
@@ -43,6 +44,7 @@ export const Webcam = ({
 
   useEffect(() => {
     const video = videoRef.current;
+    toast("회색 박스를 탭해서 시작하세요.");
     return () => {
       // Stop all tracks when unmounting
       if (video?.srcObject instanceof MediaStream) {
