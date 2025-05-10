@@ -20,7 +20,7 @@ export const User = () => {
 
   return (
     <ViewTransition>
-      <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
+      <main className="min-h-screen p-5 pb-40 text-sm text-white/90">
         <header className="flex items-end justify-between">
           <div>
             <span className="block pt-1 text-3xl font-semibold">

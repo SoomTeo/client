@@ -21,7 +21,7 @@ export const Share = () => {
   const { push } = useRouter();
   const { data } = useSWR<{ id: number; nickname: string }[]>(`friend`);
   return (
-    <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
+    <main className="min-h-screen p-5 pb-40 text-sm text-white/90">
       <Header title="공유하기" />
       <div className="mt-5"></div>
       <div className="flex flex-col items-center rounded-xl bg-zinc-900 py-7">

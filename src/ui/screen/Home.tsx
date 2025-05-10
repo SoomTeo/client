@@ -12,7 +12,7 @@ export const Home = () => {
   const { data } = useSWR<Stat>(`user/progress`);
   if (!data) return null;
   return (
-    <main className="min-h-screen min-w-screen p-5 pb-40 text-sm text-white/90">
+    <main className="min-h-screen p-5 pb-40 text-sm text-white/90">
       <Header title="요약" />
       <div className="mt-5 grid grid-cols-2 gap-5">
         <Card className="col-span-2" title="오늘">

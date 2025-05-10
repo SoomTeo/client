@@ -5,6 +5,7 @@ import { Auth } from "./ui/screen/Auth";
 import { DoMission } from "./ui/screen/DoMission";
 import { Home } from "./ui/screen/Home";
 import { InfoForm } from "./ui/screen/InfoForm";
+import { Layout } from "./ui/screen/Layout";
 import { Mission } from "./ui/screen/Mission";
 import { Register } from "./ui/screen/Register";
 import { Share } from "./ui/screen/Share";
@@ -15,26 +16,28 @@ import { User } from "./ui/screen/User";
 
 export const App = () => {
   return (
-    <Splash>
-      <Auth>
-        <BrowserRouter
-          routes={{
-            "/": () => <Home />,
-            "/404": () => <div>404</div>,
-            "/info-form": () => <InfoForm />,
-            "/mission": () => <Mission />,
-            "/mission/:id": () => <DoMission />,
-            "/register": () => <Register />,
-            "/share": () => <Share />,
-            "/sign-in": () => <SignIn />,
-            "/test-form": () => <TestForm />,
-            "/user/:id": () => <User />,
-          }}
-        >
-          {(Page) => <Page />}
-        </BrowserRouter>
-        <Toaster position="top-center" theme="dark" />
-      </Auth>
-    </Splash>
+    <Layout>
+      <Splash>
+        <Auth>
+          <BrowserRouter
+            routes={{
+              "/": () => <Home />,
+              "/404": () => <div>404</div>,
+              "/info-form": () => <InfoForm />,
+              "/mission": () => <Mission />,
+              "/mission/:id": () => <DoMission />,
+              "/register": () => <Register />,
+              "/share": () => <Share />,
+              "/sign-in": () => <SignIn />,
+              "/test-form": () => <TestForm />,
+              "/user/:id": () => <User />,
+            }}
+          >
+            {(Page) => <Page />}
+          </BrowserRouter>
+          <Toaster position="top-center" theme="dark" />
+        </Auth>
+      </Splash>
+    </Layout>
   );
 };
